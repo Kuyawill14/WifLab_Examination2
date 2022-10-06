@@ -38,8 +38,7 @@ if (isset($_POST['btn_submit'])) {
         $body = filter_var($_POST['body'],FILTER_SANITIZE_STRING);
         $time_date_today = date('Y-m-d H:i:s');
 
-        
-
+    
         //check if there is a empty inout fields backend side
         if($name != "" && $email != "" && $number != "" && $subject != "" && $body != ""){
             //query to insert data into database
@@ -49,10 +48,10 @@ if (isset($_POST['btn_submit'])) {
             if ($conn->query($sql_insert_query) === TRUE) {
                 //alert and return to header location to index page
                 SendEmail( $name, $email, $subject, $body);
-                /* echo "<script>
+                echo "<script>
                         alert('Successfully Submitted');
                         window.location.href='../index.php';
-                    </script>"; */
+                    </script>";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -87,30 +86,28 @@ function SendEmail($name, $email,$subject,$body){
     //setup Setting of your STMP server
     //$mail->SMTPDebug = SMTP::DEBUG_SERVER;     
     $mail->isSMTP();
-    $mail->Host = "ssl://smtp.gmail.com:465";
+    $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = TRUE;
     $mail->Username = "vargasjeff27@gmail.com";
     $mail->Password = "mwill1414";
-    //$mail->SMTPSecure = "tls";
-    //$mail->Port = 587;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  
+    $mail->Port       = 587;  
     
     //Your Email Setting
     $mail->isHTML(true);
     $mail->setFrom($email, $name);
-    $mail->addAddress("vargasjeff27@gmail.com");
+    $mail->addAddress("wiflab.info@gmail.com");
     $mail->Subject = ("$email ($subject)");
     $mail->Body = $body;
 
     if($mail->send()){
         $status = "success";
-        $response = "Email is sent!";
-        echo $status;
+        
     }else{
         $status = "failed";
         $response = "Something wen wrong!";
-        echo $mail->ErrorInfo;
+        //echo $mail->ErrorInfo;
     }
-
 
     //Email Header mail() in php not working in localhost
     /* $headers .= "MIME-Version: 1.0\r\n";
