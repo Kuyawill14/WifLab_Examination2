@@ -85,14 +85,14 @@ function SendEmail($name, $email,$subject,$body){
     $mail = new PHPMailer();
 
     //setup Setting of your STMP server
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;     
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;     
     $mail->isSMTP();
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPAuth = true;
+    $mail->Host = "ssl://smtp.gmail.com:465";
+    $mail->SMTPAuth = TRUE;
     $mail->Username = "vargasjeff27@gmail.com";
     $mail->Password = "mwill1414";
-    $mail->SMTPSecure = "tls";
-    $mail->Port = 465;
+    //$mail->SMTPSecure = "tls";
+    //$mail->Port = 587;
     
     //Your Email Setting
     $mail->isHTML(true);
@@ -112,15 +112,12 @@ function SendEmail($name, $email,$subject,$body){
     }
 
 
-
-
     //Email Header mail() in php not working in localhost
     /* $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html\r\n";
     $headers .= 'From: '.$email. "\r\n" .'Reply-To: reply@example.com' . "\r\n".'X-Mailer: PHP/' . phpversion();
     $email_to_receive = "magaoaywilson14@gmail.com";   
     mail($email_to_receive, "$subject", $body, "From:" . $email);       */
-
 }
 
 

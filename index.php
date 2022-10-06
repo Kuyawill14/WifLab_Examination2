@@ -11,8 +11,12 @@
    
     <div class="container">
     <form action="actions/submit_form.php" method="POST">
-        <h3>Contact Support Form</h3>
-        <hr>
+        <div class="header">
+            <h2>Contact Us</h2>
+            <p>For all enquiries, Please email us using the form below</p>
+        </div>
+        
+
         <label for="fullname">Full Name</label>
         <input type="text" id="full_name" name="fullname" placeholder="Full Name" required>
 
@@ -30,8 +34,10 @@
 
         <div class="g-recaptcha" data-sitekey="6LcHkVsiAAAAALEjyYMHJv8EMvVu_8HVY0BRrnX1"></div>
         <br/>
-
-        <input type="submit" name="btn_submit" value="Submit">
+        <div class="btn_container">
+            <input type="submit" name="btn_submit" value="Submit">
+        </div>
+       
     </form>
     </div>
 
